@@ -22,9 +22,10 @@ router.post('/', async (req, res, next) => {
   // res.json({ message: 'connected' });
 });
 
-router.post('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const dbTimes = await db.Times.find();
+    console.log(dbTimes);
     res.json(dbTimes);
   } catch (error) {
     res.status(500).json({ message: 'Server Error', error });
