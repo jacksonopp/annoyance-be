@@ -8,12 +8,13 @@ router.get('/ping', (req, res) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const { seconds } = req.body;
-  console.log(seconds);
+  const { seconds, successTime } = req.body;
+  console.log(seconds, successTime);
 
   try {
     const dbTime = await db.Times.create({
       wait_time: seconds,
+      success_time: successTime,
     });
     res.status(200).json(dbTime);
   } catch (error) {
